@@ -3,6 +3,13 @@
 #    controller: App\Controller\DefaultController::index
 botman_webhook:
   path: /botman/webhook
-  methods: [GET]
+  methods: [GET,POST]
   defaults:
     _controller: App\Controller\botmanController::botmanWebhook
+
+dialog:
+  path: /dialog
+  methods: [GET,POST]
+  defaults:
+    _controller: App\Controller\botmanController::testDialogFlow
+

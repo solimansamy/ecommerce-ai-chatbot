@@ -3,12 +3,16 @@
 
 namespace App\Services;
 
-
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
 
 class dialogFlowReceivedMiddleware implements \BotMan\BotMan\Interfaces\Middleware\Received
 {
+
+    public function __construct()
+    {
+    }
+
     /**
      * Handle an incoming message.
      *
@@ -20,7 +24,18 @@ class dialogFlowReceivedMiddleware implements \BotMan\BotMan\Interfaces\Middlewa
      */
     public function received(IncomingMessage $message, $next, BotMan $bot)
     {
-        $message->addExtras('custom_message_information', 'my custom value');
+        $dialogFlowAgent = new dialogFlowAgent();
+        $dialogFlowAgent->openSession();
+        $result = $dialogFlowAgent->detectIntent('aa', 'text');
+//        dump($result);
+        $message->addExtras('hello', 'hello');
         return $next($message);
+    }
+
+    public function testDialogFlow($text)
+    {
+        $dialogFlowAgent = new dialogFlowAgent();
+        $dialogFlowAgent->openSession();
+        return $dialogFlowAgent->detectIntent($text, 'text');
     }
 }

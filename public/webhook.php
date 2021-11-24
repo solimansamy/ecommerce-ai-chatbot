@@ -7,13 +7,17 @@ use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Drivers\DriverManager;
 use APP\Services\dialogFlowReceivedMiddleware;
-use APP\Services\witAIReceivedMiddleware;
+//use APP\Services\witAIReceivedMiddleware;
+use Symfony\Component\DependencyInjection\Container;
+//require_once __DIR__.'/vendor/symfony/http-foundation/Request.php';
+//require_once dirname(__DIR__).'src/Services/dialogFlowReceivedMiddleware.php';
 
-require dirname(__DIR__) . '/config/bootstrap.php';
+
+//require dirname(__DIR__) . '/config/bootstrap.php';
 
      $config = [
         'facebook' => [
-            'token' => 'EAAGWjfdH1esBAJ1Ath5RJrbLzZBLRyzE7VNyUhltaGsbttD3mLyCT2gq5zho3LepuH996p4ZChdqSKOLCZAR0B4aSj8kyODZCdhPqgT4qnGNtifK4mBtT3ZC8rc1dBF6cWaZB28tSvTZAxqajlpTCM4hPw9iG3Exi0TLoE0cnR5pChTkDkdlLZClMqZC7BseC5sIZD',
+            'token' => 'EAAGWjfdH1esBAFkFF0MylMzboHhqclRWdtgxuYprAyIJSy1kM1DuToVbNNZAFxO87wBh15Azch8w7QIjdPLjZC8aBZCi0v5OwrxRIjuehffYPqPU8HQuxsUZBX5cqlInAKwrperOJKwFLQGZClOKkKeZCjpUZBqjfHDYBG4OgYSWEZATYREsnLZAm5zKiZBc0w4eoZD',
             'app_secret' => '177e060025caac02951004d19dab37d1',
             'verification'=>'YESCOMIN',
         ]
@@ -22,9 +26,12 @@ require dirname(__DIR__) . '/config/bootstrap.php';
 //    EAAGWjfdH1esBAJ1Ath5RJrbLzZBLRyzE7VNyUhltaGsbttD3mLyCT2gq5zho3LepuH996p4ZChdqSKOLCZAR0B4aSj8kyODZCdhPqgT4qnGNtifK4mBtT3ZC8rc1dBF6cWaZB28tSvTZAxqajlpTCM4hPw9iG3Exi0TLoE0cnR5pChTkDkdlLZClMqZC7BseC5sIZD
 
     DriverManager::loadDriver(\BotMan\Drivers\Facebook\FacebookDriver::class);
-
+//    $container = new
 // Create an instance
     $botman = BotManFactory::create($config);
+
+
+//    $middleware = $container->get(dialogFlowReceivedMiddleware::class);
 
     // Give the bot something to listen for.
     $botman->hears('hello', function (BotMan $bot) {
@@ -39,9 +46,10 @@ require dirname(__DIR__) . '/config/bootstrap.php';
 
     });
 
+
 //    $middleware = new dialogFlowReceivedMiddleware();
-    $middleware = new witAIReceivedMiddleware();
-    $botman->middleware->received($middleware);
+//    $middleware = new witAIReceivedMiddleware();
+//    $botman->middleware->received($middleware);
 
     $botman->listen();
 

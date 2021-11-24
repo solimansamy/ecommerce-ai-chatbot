@@ -3,10 +3,10 @@
 
 namespace App\Services;
 
-use Botme\NLPBundle\Model\EntityModel;
-use Botme\NLPBundle\Services\Adapter\AudioMessageAdapter;
-use Botme\NLPBundle\Services\Handler\AbstractOnlineShopping;
-use Botme\NLPBundle\Services\Handler\ChannelStrategyInterface;
+//use Botme\NLPBundle\Model\EntityModel;
+//use Botme\NLPBundle\Services\Adapter\AudioMessageAdapter;
+//use Botme\NLPBundle\Services\Handler\AbstractOnlineShopping;
+//use Botme\NLPBundle\Services\Handler\ChannelStrategyInterface;
 use Exception;
 use Google\Cloud\Dialogflow\V2\AudioEncoding;
 use Google\Cloud\Dialogflow\V2\InputAudioConfig;
@@ -28,8 +28,8 @@ class dialogFlowAgent
     public function setupConfiguration($businessPurb)
     {
         $this->sessionId      = uniqid() ;
-        $this->projectId      = getenv('DIALOGFLOW_ID_'.$businessPurb);
-        $this->credentialPath = getenv('DIALOGFLOW_PATH_'.$businessPurb);
+        $this->projectId      = getenv('DIALOGFLOW_ID');
+//        $this->credentialPath = getenv('DIALOGFLOW_PATH_'.$businessPurb);
         return $this;
     }
     public function getSessionId()
@@ -40,7 +40,7 @@ class dialogFlowAgent
     {
         if($sessionId)
             $this->sessionId  = $sessionId ;
-        $credential = array('credentials' => $this->credentialPath);
+        $credential = array('credentials' => 'client-secret.json');
         $this->sessionsClient = new SessionsClient($credential);
         $this->sessionName = $this->sessionsClient->sessionName($this->projectId,  $this->sessionId);
         return $this ;

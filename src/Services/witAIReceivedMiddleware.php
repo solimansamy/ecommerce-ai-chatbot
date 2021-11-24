@@ -21,9 +21,6 @@ class witAIReceivedMiddleware implements \BotMan\BotMan\Interfaces\Middleware\Re
      */
     public function received(IncomingMessage $message, $next, BotMan $bot)
     {
-        $dialogFlowAgent = new dialogFlowAgent();
-        $dialogFlowAgent->openSession();
-//        $result = $dialogFlowAgent->detectIntent('aa', 'text');
         $message->addExtras('custom_message_information', 'my custom value');
         return $next($message);
     }

@@ -3,10 +3,7 @@
 
 namespace App\Services;
 
-use Botme\NLPBundle\Model\EntityModel;
-use Botme\NLPBundle\Services\Adapter\AudioMessageAdapter;
-use Botme\NLPBundle\Services\Handler\AbstractOnlineShopping;
-use Botme\NLPBundle\Services\Handler\ChannelStrategyInterface;
+
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Tgallice\Wit\Client;
 use Tgallice\Wit\MessageApi;
@@ -68,12 +65,12 @@ class witAIAgent
         return $messageApi->extractMeaning($text);
     }
 
-    protected function detectAudioIntent($audioFilePath )
-    {
-        $wavFile = $this->container->get(AudioMessageAdapter::class)->convert($audioFilePath, 'wav');
-        $speechApi = new SpeechApi($this->clientApi);
-        return $speechApi->extractMeaning($wavFile);
-    }
+//    protected function detectAudioIntent($audioFilePath )
+//    {
+//        $wavFile = $this->container->get(AudioMessageAdapter::class)->convert($audioFilePath, 'wav');
+//        $speechApi = new SpeechApi($this->clientApi);
+//        return $speechApi->extractMeaning($wavFile);
+//    }
 
     protected function handleResponse($response ,EntityModel &$entities)
     {
