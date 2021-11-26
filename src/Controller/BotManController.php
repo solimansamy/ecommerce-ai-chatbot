@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Services\DialogFlowReceivedMiddleware;
+use Psr\Log\LoggerInterface;
 
 
 class BotManController extends Controller
@@ -25,20 +26,18 @@ class BotManController extends Controller
 
     const VERIFY_TOKEN = 'riseup';
 
-    public function botManWebHook(Request $request)
+    public function botManWebHook(Request $request, LoggerInterface $logger)
     {
         // Edit Callback URL
         if($request->isMethod('GET')) {
+            $logger->debug($request);
             return $this->verifyWebHook($request);
         }
 
         // Messenger is talking
         if($request->isMethod('POST')) {
+            $logger->debug($request->getContent());
             return new Response();
-        }
-
-        if($request->query->get('hub.mode') == 'subscribe' && $request->query->get('hub.verify_token') == self::VERIFY_TOKEN) {
-            return new Response('subscribed', 200);
         }
 
         DriverManager::loadDriver(\BotMan\Drivers\Facebook\FacebookDriver::class);
