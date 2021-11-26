@@ -32,14 +32,6 @@ class DialogFlowAgent
     /** @var QueryResult */
     protected $dialogFlowResponse;
 
-    public function setConfiguration($businessPurb)
-    {
-        $this->sessionId      = uniqid() ;
-        $this->projectId      = getenv('DIALOGFLOW_PROJECT_ID');
-//        $this->credentialPath = getenv('DIALOGFLOW_PATH_'.$businessPurb);
-        return $this;
-    }
-
     /**
      * @return string
      */
@@ -55,10 +47,15 @@ class DialogFlowAgent
      */
     public function openSession($sessionId = false)
     {
+        $accountKey = getenv('DIALOG_FLOW_SERVICE_ACCOUNT_KEY');
+        $projectName = getenv('DIALOG_FLOW_PROJECT_ID');
+
         if($sessionId) {
             $this->sessionId  = $sessionId;
         }
-        $credential = array('credentials' => '/home/soliman/Projects/Riseup/woocommerce-chatbot-v9sf-5ffd1ecea7c5.json');
+        $credential = array(
+            'credentials' => '../public/woocommerce-chatbot-v9sf-5ffd1ecea7c5.json'
+        );
         $this->sessionsClient = new SessionsClient($credential);
         $this->sessionName = $this->sessionsClient->sessionName('woocommerce-chatbot-v9sf', uniqid());
         return $this ;
