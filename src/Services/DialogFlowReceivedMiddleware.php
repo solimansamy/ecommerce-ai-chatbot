@@ -24,7 +24,7 @@ class DialogFlowReceivedMiddleware implements \BotMan\BotMan\Interfaces\Middlewa
      */
     public function received(IncomingMessage $message, $next, BotMan $bot)
     {
-        $dialogFlowAgent = new dialogFlowAgent();
+        $dialogFlowAgent = new DialogFlowAgent();
         $dialogFlowAgent->openSession();
         $result = $dialogFlowAgent->detectIntent('aa', 'text');
 //        dump($result);
@@ -34,7 +34,7 @@ class DialogFlowReceivedMiddleware implements \BotMan\BotMan\Interfaces\Middlewa
 
     public function testDialogFlow($text)
     {
-        $dialogFlowAgent = new dialogFlowAgent();
+        $dialogFlowAgent = new DialogFlowAgent();
         $dialogFlowAgent->openSession();
         return $dialogFlowAgent->detectIntent($text, 'text');
     }

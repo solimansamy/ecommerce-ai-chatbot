@@ -6,7 +6,7 @@ namespace App\Services;
 use BotMan\BotMan\Interfaces\Middleware\Received;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
 use BotMan\BotMan\BotMan;
-use App\Services\dialogFlowAgent;
+use App\Services\DialogFlowAgent;
 
 class witAIReceivedMiddleware implements \BotMan\BotMan\Interfaces\Middleware\Received
 {

@@ -9,7 +9,7 @@ use Google\Cloud\Dialogflow\V2\SessionsClient;
 use Google\Cloud\Dialogflow\V2\TextInput;
 use Google\Cloud\Dialogflow\V2\QueryResult;
 
-class dialogFlowAgent
+class DialogFlowAgent
 {
     /** @var SessionsClient */
     private $sessionsClient;
@@ -32,10 +32,10 @@ class dialogFlowAgent
     /** @var QueryResult */
     protected $dialogFlowResponse;
 
-    public function setupConfiguration($businessPurb)
+    public function setConfiguration($businessPurb)
     {
         $this->sessionId      = uniqid() ;
-        $this->projectId      = getenv('DIALOGFLOW_ID');
+        $this->projectId      = getenv('DIALOGFLOW_PROJECT_ID');
 //        $this->credentialPath = getenv('DIALOGFLOW_PATH_'.$businessPurb);
         return $this;
     }

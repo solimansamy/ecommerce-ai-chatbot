@@ -50,6 +50,5 @@ class BotManController extends Controller
         $middleware = $this->get(DialogFlowReceivedMiddleware::class);
         $text = $request->query->get('text');
         $middleware->testDialogFlow($text);
-        return new Response();
     }
 }
