@@ -30,13 +30,13 @@ class BotManController extends Controller
     {
         // Edit Callback URL
         if($request->isMethod('GET')) {
-            $logger->debug($request);
+            $logger->debug('Logging' . $request);
             return $this->verifyWebHook($request);
         }
 
         // Messenger is talking
         if($request->isMethod('POST')) {
-            $logger->debug($request->getContent());
+            $logger->debug('Logging' . $request->getContent());
             return new Response();
         }
 
