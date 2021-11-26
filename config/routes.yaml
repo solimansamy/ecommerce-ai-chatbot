@@ -5,11 +5,11 @@ botman_webhook:
   path: /botman/webhook
   methods: [GET,POST]
   defaults:
-    _controller: App\Controller\botmanController::botmanWebhook
+    _controller: App\Controller\BotManController::botmanWebhook
 
 dialog:
   path: /dialog
   methods: [GET,POST]
   defaults:
-    _controller: App\Controller\botmanController::testDialogFlow
+    _controller: App\Controller\BotManController::testDialogFlow
 

@@ -6,13 +6,14 @@ namespace App\Controller;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Drivers\DriverManager;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Services\dialogFlowReceivedMiddleware;
+use App\Services\DialogFlowReceivedMiddleware;
 
 
-class botmanController
+class BotManController extends Controller
 {
     const config = [
             'facebook' => [
@@ -26,7 +27,7 @@ class botmanController
     {
         DriverManager::loadDriver(\BotMan\Drivers\Facebook\FacebookDriver::class);
         $botman = BotManFactory::create($this::config);
-//        $middleware = new dialogFlowReceivedMiddleware();
+//        $middleware = new DialogFlowReceivedMiddleware();
 
 //        dump($request->query->get('hub_challenge'));
 //        $botman->listen();
@@ -35,7 +36,7 @@ class botmanController
             $bot->reply('Hello yourself.');
         });
         $botman->hears('[a-zA-Z]+', function (BotMan $bot) {
-            $middleware = new dialogFlowReceivedMiddleware();
+            $middleware = $this->get(DialogFlowReceivedMiddleware::class);
             $bot->middleware->received($middleware);
         });
 
@@ -46,7 +47,7 @@ class botmanController
 
     public function testDialogFlow(Request $request)
     {
-        $middleware = new dialogFlowReceivedMiddleware();
+        $middleware = $this->get(DialogFlowReceivedMiddleware::class);
         $text = $request->query->get('text');
         $middleware->testDialogFlow($text);
         return new Response();

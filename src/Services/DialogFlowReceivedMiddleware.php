@@ -6,12 +6,12 @@ namespace App\Services;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
 
-class dialogFlowReceivedMiddleware implements \BotMan\BotMan\Interfaces\Middleware\Received
+class DialogFlowReceivedMiddleware implements \BotMan\BotMan\Interfaces\Middleware\Received
 {
 
-    public function __construct()
-    {
-    }
+//    public function __construct()
+//    {
+//    }
 
     /**
      * Handle an incoming message.

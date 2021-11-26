@@ -6,11 +6,11 @@ use Symfony\Component\HttpFoundation\Request;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Drivers\DriverManager;
-use APP\Services\dialogFlowReceivedMiddleware;
+use APP\Services\DialogFlowReceivedMiddleware;
 //use APP\Services\witAIReceivedMiddleware;
 use Symfony\Component\DependencyInjection\Container;
 //require_once __DIR__.'/vendor/symfony/http-foundation/Request.php';
-//require_once dirname(__DIR__).'src/Services/dialogFlowReceivedMiddleware.php';
+//require_once dirname(__DIR__).'src/Services/DialogFlowReceivedMiddleware.php';
 
 
 //require dirname(__DIR__) . '/config/bootstrap.php';
@@ -31,7 +31,7 @@ use Symfony\Component\DependencyInjection\Container;
     $botman = BotManFactory::create($config);
 
 
-//    $middleware = $container->get(dialogFlowReceivedMiddleware::class);
+//    $middleware = $container->get(DialogFlowReceivedMiddleware::class);
 
     // Give the bot something to listen for.
     $botman->hears('hello', function (BotMan $bot) {
@@ -41,13 +41,13 @@ use Symfony\Component\DependencyInjection\Container;
     // Start listening
 
     $botman->hears('[a-zA-Z]+', function (BotMan $bot) {
-        $middleware = new dialogFlowReceivedMiddleware();
+        $middleware = new DialogFlowReceivedMiddleware();
         $bot->middleware->received($middleware);
 
     });
 
 
-//    $middleware = new dialogFlowReceivedMiddleware();
+//    $middleware = new DialogFlowReceivedMiddleware();
 //    $middleware = new witAIReceivedMiddleware();
 //    $botman->middleware->received($middleware);
 
