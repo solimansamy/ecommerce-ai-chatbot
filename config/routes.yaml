@@ -2,10 +2,10 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 botman_webhook:
-  path: /botman/webhook
+  path: /webhook
   methods: [GET,POST]
   defaults:
-    _controller: App\Controller\BotManController::botmanWebhook
+    _controller: App\Controller\BotManController::botManWebHook
 
 dialog:
   path: /dialog
