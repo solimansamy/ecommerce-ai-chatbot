@@ -3,10 +3,6 @@
 
 namespace App\Services;
 
-//use Botme\NLPBundle\Model\EntityModel;
-//use Botme\NLPBundle\Services\Adapter\AudioMessageAdapter;
-//use Botme\NLPBundle\Services\Handler\AbstractOnlineShopping;
-//use Botme\NLPBundle\Services\Handler\ChannelStrategyInterface;
 use Exception;
 use Google\Cloud\Dialogflow\V2\AudioEncoding;
 use Google\Cloud\Dialogflow\V2\InputAudioConfig;
@@ -23,7 +19,7 @@ class dialogFlowAgent
     private $credentialPath;
     protected $sessionId ;
     protected $language;
-    protected $dialogflowResponse ;
+    protected $dialogFlowResponse;
 
     public function setupConfiguration($businessPurb)
     {
@@ -40,9 +36,9 @@ class dialogFlowAgent
     {
         if($sessionId)
             $this->sessionId  = $sessionId ;
-        $credential = array('credentials' => 'client-secret.json');
+        $credential = array('credentials' => '/home/soliman/Projects/Riseup/woocommerce-chatbot-v9sf-5ffd1ecea7c5.json');
         $this->sessionsClient = new SessionsClient($credential);
-        $this->sessionName = $this->sessionsClient->sessionName($this->projectId,  $this->sessionId);
+        $this->sessionName = $this->sessionsClient->sessionName('woocommerce-chatbot-v9sf', uniqid());
         return $this ;
     }
 
@@ -70,6 +66,7 @@ class dialogFlowAgent
         $queryInput = new QueryInput();
         $queryInput->setText($textInput);
         $response = $this->sessionsClient->detectIntent($this->sessionName, $queryInput);
+        dump($response->getQueryResult());exit;
         return  $response->getQueryResult();
     }
 
@@ -89,24 +86,24 @@ class dialogFlowAgent
     public function WelcomeIntent()
     {
         $content = new EntityModel();
-        $content->setQueryText($this->dialogflowResponse->getQueryText());
-        $content->setIntentName($this->dialogflowResponse->getIntent()->getDisplayName());
-        $content->setConfidence($this->dialogflowResponse->getIntentDetectionConfidence());
-        $content->setFulfilment($this->dialogflowResponse->getFulfillmentText());
+        $content->setQueryText($this->dialogFlowResponse->getQueryText());
+        $content->setIntentName($this->dialogFlowResponse->getIntent()->getDisplayName());
+        $content->setConfidence($this->dialogFlowResponse->getIntentDetectionConfidence());
+        $content->setFulfilment($this->dialogFlowResponse->getFulfillmentText());
         return $content ;
     }
     public function FallbackIntent()
     {
         $content = new EntityModel();
-        $content->setQueryText($this->dialogflowResponse->getQueryText());
-        $content->setIntentName($this->dialogflowResponse->getIntent()->getDisplayName());
-        $content->setFulfilment($this->dialogflowResponse->getFulfillmentText());
+        $content->setQueryText($this->dialogFlowResponse->getQueryText());
+        $content->setIntentName($this->dialogFlowResponse->getIntent()->getDisplayName());
+        $content->setFulfilment($this->dialogFlowResponse->getFulfillmentText());
         return $content ;
     }
     protected function ExtractParams()
     {
         $params = array();
-        $paramsObject = $this->dialogflowResponse->getParameters()->getFields();
+        $paramsObject = $this->dialogFlowResponse->getParameters()->getFields();
         foreach ($paramsObject as $key => $value) {
             if($paramsObject[$key]->getKind()=='string_value')
                 $params[$key] =  $paramsObject[$key]->getStringValue();
@@ -117,10 +114,10 @@ class dialogFlowAgent
     protected function detectedContent()
     {
         $content = new EntityModel();
-        $content->setQueryText($this->dialogflowResponse->getQueryText());
-        $content->setIntentName($this->dialogflowResponse->getIntent()->getDisplayName());
-        $content->setConfidence($this->dialogflowResponse->getIntentDetectionConfidence());
-        $content->setFulfilment($this->dialogflowResponse->getFulfillmentText());
+        $content->setQueryText($this->dialogFlowResponse->getQueryText());
+        $content->setIntentName($this->dialogFlowResponse->getIntent()->getDisplayName());
+        $content->setConfidence($this->dialogFlowResponse->getIntentDetectionConfidence());
+        $content->setFulfilment($this->dialogFlowResponse->getFulfillmentText());
         return $content ;
     }
 }
