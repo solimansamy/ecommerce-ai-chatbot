@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "woocommerce-chatbot-v9sf",
+  "private_key_id": "5b8a4f1b849ecc7bb9a8d1e74ebf5ea84278f5c9",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCxOxt64vAwFsiZ\n9JCKWjtXo62sDzfja70aB80l/F+TmZ+z26RqGIMF0MPW7T04hcAjJhJTdPtuC8xs\nGYwD9lDd23oWSTq8OAtneLf81eeNDFTtCYu8P2PZWNfy8E6Dn/rhGyRlRi408qC4\n9DXHUdvZ2FQhKmqVIbFWnklAd4pht/0j+x0G1X0sgx0xPLUw5BGHg6DeUNiTN1Pd\niPdjrcsAQD0OD8WOfUzWMGdc5jEhKPk4D7JlS+kwSMFhixBx4cnXuEHAV4tLZ2gb\nhDLrJMJDwtqNpdlmSXLf9V17y8mN3fFy8RaTd0J9WLCDkG+9z6QCqhXXC+CkZnKO\nNX6hZIPPAgMBAAECggEAFl9DOfEcEmighvVSf5x3TDoAVNgQ8oIppfe2ePqRfWTR\nk5creyxqnFknjOHNWMK4J9ezotmsBCQKIy/bDFmos0YeybcRv9Zani5Pb2OjGJt7\nZvajBIQt+wRA3Pe3uYbVg6/07rHRaGP4+jqdmp0QjGsckkPenheu4U5sKcP38cYH\n11FWi5ZJYh3TIVtJX4M9xtLOXSP34fRnzca2nYnG90R7ywfpy7iA72fv4iUgVVuL\n+YvsB/5GQosV3r9yKO+PGVouKWv8ns8KKMViruyOctjDDdlN12+3nqSOoCf4GHr7\nyuTwZcMpJFR/G/3cFAGyFvVbAx6CS22WMFf7ouxRWQKBgQD0iiwfLFGNwMET01EZ\nxKi1xbG9nJXJycO+59oADTB58Jw1YC8/l35gSOrmiRDzB/+8xC7uo6vn47i8iJvM\n7ZG3Ll0Dk8w/a5ZEJzS1kBBAAD8X+/ML8vxRFeuQXwDbWMWFmBpDHY+dYHnLuFYv\nJF7nsafgzFT4eI1WXtbq6pVwhwKBgQC5iWhSTHgYPBoWTnNZXLWnMBgApUEAQXDY\neFy6mziOt4mnKD8YdTW069pGtKk9bFQcKLTPf0+8s026U9eZXbvGUuYSCzOqOxqZ\nUVwV50Mmy1hL0hvmcjyu5A/7WkgueIAvjsu6fgf8L6j9cQ+ZHubAGjZlcfs2+p0Y\nL103T6QMeQKBgBe/AyHTz+eP/C/MqWdzLV7ZX7Ul63W43gU/xm+S2E4/CywztuLZ\n9y+qZQUV8ktnT3IpKtWJlzvhZSMJsPdpamj7W5TpWUAfVmwv0nJ/FtTgMUBG+wcC\nBXZqRoGyeAbUy/l5F7PEvxltMOaTc+sIAR9GpSKzNN0b972XYA9X0EMpAoGAfPSo\nB9VshJXl0+QeF68ywFjJsZWag3uPbpsRiLQFkUjXMncOl4BJHYJCzZ/a431T4Gsh\n6yWJJEN2M+lHqQjR8C3guYJF135a2atL44yPU09cNiRZmgiSCg+bG+Of/Xw2iNEZ\nMI60/glzPM2qfausKPD+dbAgStTafHFZzGicybECgYAz2AzyLfmXXjrcyz8Ui6XM\npBSYr7viFeKAqKpN7WiEaDPJHTmB6w6R9v33aZKr4SQ7xYEv2Oj9I3BfY7zeGpC1\nzwfS5RYetGApmuzFlQqv8C+0UA7KuDHoFycrTOEV2ADzAmdfovXbHZPFpeNcfGmv\nb95lULJfW6lJQr+/We7KXw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "woocommerce-service-accpunt@woocommerce-chatbot-v9sf.iam.gserviceaccount.com",
+  "client_id": "105955003766316226151",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/woocommerce-service-accpunt%40woocommerce-chatbot-v9sf.iam.gserviceaccount.com"
+}

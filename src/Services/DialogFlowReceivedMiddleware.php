@@ -26,8 +26,9 @@ class DialogFlowReceivedMiddleware implements \BotMan\BotMan\Interfaces\Middlewa
     {
         $dialogFlowAgent = new DialogFlowAgent();
         $dialogFlowAgent->openSession();
+
         $result = $dialogFlowAgent->detectIntent('aa', 'text');
-//        dump($result);
+        dump($result);
         $message->addExtras('hello', 'hello');
         return $next($message);
     }

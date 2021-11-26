@@ -54,11 +54,16 @@ class DialogFlowAgent
             $this->sessionId  = $sessionId;
         }
         $credential = array(
-            'credentials' => '../public/woocommerce-chatbot-v9sf-5ffd1ecea7c5.json'
+            'credentials' => '../public/woocommerce-chatbot-v9sf-5b8a4f1b849e.json'
         );
         $this->sessionsClient = new SessionsClient($credential);
         $this->sessionName = $this->sessionsClient->sessionName('woocommerce-chatbot-v9sf', uniqid());
         return $this ;
+    }
+
+    public function getSession()
+    {
+        return $this->sessionsClient;
     }
 
     public function closeSession()
