@@ -73,26 +73,25 @@ class WooCommerceService
     private function productSearch($params)
     {
         $search = $params['product'];
-        $items = file_get_contents(
+        $items = json_decode(file_get_contents(
             sprintf("%s/wp-json/wc/v3/products?search=%s&consumer_key=%s&consumer_secret=%s", self::BASE_URL, $search, self::CONSUMER_KEY, self::CONSUMER_SECRET)
-        );
+        ));
 
-        if(count($items) == 0) {
+        if(!$items) {
             return;
         }
 
         $elements = array(); $i = 0;
-        while ($i < 5) {
+        while ($i < 5 && $i <= count($items)) {
             $item = $items[$i];
-            $elements[] = Element::create($item['name'])
+            $elements[] = Element::create($item->name)
                 ->subtitle('All about BotMan')
-                ->image('http://botman.io/img/botman-body.png')
-                ->addButton(ElementButton::create('visit')
-                    ->url('http://botman.io')
+                ->image($item->images[0]->src)
+                ->addButton(ElementButton::create('Show Details')
+                    ->url($item->permalink)
                 )
-                ->addButton(ElementButton::create('tell me more')
-                    ->payload('tellmemore')
-                    ->type('postback')
+                ->addButton(ElementButton::create('Add to Cart')
+                    ->url($item->permalink)
                 );
             $i++;
         }

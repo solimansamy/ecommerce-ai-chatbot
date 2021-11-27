@@ -23,7 +23,7 @@ class BotManController extends Controller
 
     const config = [
         'facebook' => [
-            'token' => 'EAADGZAvOUQeEBAG2t9lX6XbjbIjlv5lWmJux40C3H8Jdvnskp4aQI25SMTiwMnyLqMjB9uvKANW40LScHqzek5bBZA0BrQRxDpNO7PZCxZBSz9ZCOZC4fLInEmY3WhZAHCHdrlZCbBM6JVwjscYhNBylcsLHhDVZA775WOK5len7R74LmrGD2kx3k',
+            'token' => 'EAADGZAvOUQeEBAPxKTVNdeq69tBfifNI5ENqfh69gGs0IJtfjsV0bmhkDINSfRjo2dxN5uKV0dQZCZBrLlBye9JZC0iJXvARBWlAkhEMM1smbxIPlpbmZCip5rmrtZC5XB286wzbqRCsIbgMF9YltZCRGkpdXKhwUKUyCKTfuQdZAKKwevbk3x2G',
             'app_secret' => 'a538436124b1d66710f7f14f2d2f2b73',
             'verification' => self::VERIFY_TOKEN
         ]
@@ -39,10 +39,26 @@ class BotManController extends Controller
 
         // Messenger is talking
         if($request->isMethod('POST')) {
+            if($this->shouldTheRequestBeBlocked($request)) {
+                return new Response();
+            }
             $logger->debug('Request Logging: ' . $request->getContent());
             return $this->listenToMessenger($request);
-            return new Response();
         }
+    }
+
+    private function shouldTheRequestBeBlocked(Request $request)
+    {
+        $json = json_decode($request->getContent());
+        $timeStamp = $json->entry[0]->messaging[0]->timestamp;
+
+        $TEN_MINUTES = 10 * 60 * 1000;
+        $tenAgo = $timeStamp - $TEN_MINUTES;
+        if ($timeStamp < $tenAgo) {
+            return true;
+        }
+
+        return false;
     }
 
     private function verifyMessengerWebHook(Request $request)
@@ -68,8 +84,7 @@ class BotManController extends Controller
         // Hearing Text
         $botman->hears('(.*)', function ($bot) {
             $extras = $bot->getMessage()->getExtras();
-            dump($extras['wooCommerce']);
-            $bot->reply($extras['apiReply']);
+            $bot->reply($extras['wooCommerce']);
         })->middleware($dialogFlow);
 
 
