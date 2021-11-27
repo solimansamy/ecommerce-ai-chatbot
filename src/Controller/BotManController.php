@@ -14,6 +14,7 @@ use App\Services\DialogFlowReceivedMiddleware;
 use Psr\Log\LoggerInterface;
 use function ProxyManagerTestAsset\selfAndBoolType;
 use App\Services\DialogFlow\DialogFlow;
+use BotMan\BotMan\Messages\Attachments\Audio;
 
 
 class BotManController extends Controller
@@ -22,7 +23,7 @@ class BotManController extends Controller
 
     const config = [
         'facebook' => [
-            'token' => 'EAADGZAvOUQeEBAGnMuPOJgQLJjkFkIChhrvRLTh1cJqJbgMZB0pTw9ZATIZCvQfNhRWe5UFezP3fLHv9HBugBy8nZARAvyv33WZAqrVFtccF09zu8LAFzTqxZCNZCw6nc0bk0eT4Fxt52A0znAtzDqZC1zsoI1YLnOZBnSV8Safc1eRTlbJw5u7lqa',
+            'token' => 'EAADGZAvOUQeEBAG2t9lX6XbjbIjlv5lWmJux40C3H8Jdvnskp4aQI25SMTiwMnyLqMjB9uvKANW40LScHqzek5bBZA0BrQRxDpNO7PZCxZBSz9ZCOZC4fLInEmY3WhZAHCHdrlZCbBM6JVwjscYhNBylcsLHhDVZA775WOK5len7R74LmrGD2kx3k',
             'app_secret' => 'a538436124b1d66710f7f14f2d2f2b73',
             'verification' => self::VERIFY_TOKEN
         ]
@@ -61,12 +62,24 @@ class BotManController extends Controller
             $bot->reply('Hello yourself.');
         });
 
-        $dialogflow = DialogFlow::create('en');
-        $botman->middleware->received($dialogflow);
+        $dialogFlow = DialogFlow::create('en');
+        $botman->middleware->received($dialogFlow);
+
+        // Hearing Text
         $botman->hears('(.*)', function ($bot) {
             $extras = $bot->getMessage()->getExtras();
             $bot->reply($extras['apiReply']);
-        })->middleware($dialogflow);
+        })->middleware($dialogFlow);
+
+
+        // Hearing Audio
+//        $botman->receivesAudio(function($bot, $audios) {
+//            foreach ($audios as $audio) {
+//                $url = $audio->getUrl(); // The direct url
+//                $payload = $audio->getPayload(); // The original payload
+//                $bot->reply('HHHHHHHHHHHHHHH');
+//            }
+//        });
 
 //        $botman->hears('[A-Za-z,;\'!"\\s.]+', function (BotMan $bot) {
 //

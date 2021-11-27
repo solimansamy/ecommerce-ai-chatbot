@@ -76,14 +76,16 @@ class DialogFlow implements MiddlewareInterface
      */
     public function received(IncomingMessage $message, $next, BotMan $bot)
     {
-
         $response = $this->client->getResponse($message);
+        //$wooCommerce = new WooCommerceService();
+
         $message->addExtras('apiReply', $response->getReply() ?? '');
         $message->addExtras('apiAction', $response->getAction() ?? '');
         $message->addExtras('apiActionIncomplete', $response->isComplete() ?? false);
         $message->addExtras('apiIntent', $response->getIntent() ?? '');
         $message->addExtras('apiParameters', $response->getParameters() ?? []);
         $message->addExtras('apiContexts', $response->getContexts() ?? []);
+        //$message->addExtras('wooCommerce', $wooCommerce->getResult($response) ?? $response->getReply());
 
         return $next($message);
     }
