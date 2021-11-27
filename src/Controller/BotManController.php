@@ -68,6 +68,7 @@ class BotManController extends Controller
         // Hearing Text
         $botman->hears('(.*)', function ($bot) {
             $extras = $bot->getMessage()->getExtras();
+            dump($extras['wooCommerce']);
             $bot->reply($extras['apiReply']);
         })->middleware($dialogFlow);
 

@@ -2,6 +2,7 @@
 
 namespace App\Services\DialogFlow;
 
+use App\Services\WooCommerceService;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Interfaces\MiddlewareInterface;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
@@ -77,7 +78,7 @@ class DialogFlow implements MiddlewareInterface
     public function received(IncomingMessage $message, $next, BotMan $bot)
     {
         $response = $this->client->getResponse($message);
-        //$wooCommerce = new WooCommerceService();
+        $wooCommerce = new WooCommerceService();
 
         $message->addExtras('apiReply', $response->getReply() ?? '');
         $message->addExtras('apiAction', $response->getAction() ?? '');
@@ -85,7 +86,7 @@ class DialogFlow implements MiddlewareInterface
         $message->addExtras('apiIntent', $response->getIntent() ?? '');
         $message->addExtras('apiParameters', $response->getParameters() ?? []);
         $message->addExtras('apiContexts', $response->getContexts() ?? []);
-        //$message->addExtras('wooCommerce', $wooCommerce->getResult($response) ?? $response->getReply());
+        $message->addExtras('wooCommerce', $wooCommerce->getResult($response) ?? $response->getReply());
 
         return $next($message);
     }
