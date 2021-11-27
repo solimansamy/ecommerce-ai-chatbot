@@ -23,8 +23,8 @@ class BotManController extends Controller
 
     const config = [
         'facebook' => [
-            'token' => 'EAADGZAvOUQeEBAPxKTVNdeq69tBfifNI5ENqfh69gGs0IJtfjsV0bmhkDINSfRjo2dxN5uKV0dQZCZBrLlBye9JZC0iJXvARBWlAkhEMM1smbxIPlpbmZCip5rmrtZC5XB286wzbqRCsIbgMF9YltZCRGkpdXKhwUKUyCKTfuQdZAKKwevbk3x2G',
-            'app_secret' => 'a538436124b1d66710f7f14f2d2f2b73',
+            'token' => 'EAADGZAvOUQeEBACGga2Gcx1m2uZC6mIaSuI5IzJYOEqjZB4KnCByYDxpyNmelIyQRr90WQicwCHko5uagWCQBvzE7gSCpRrEPvTSWCJVZC1lfcZAOCfiKUiUKRZCenb66rpZA9V7xgl096ZCWYEeRwM6KLR10bJtdgWPwY7yKlK9dO3ych8ts764DZA7ME5GneMAZD',
+            'app_secret' => '62bf935ee3bc87835aa2b2029e1cf0b9',
             'verification' => self::VERIFY_TOKEN
         ]
     ];
